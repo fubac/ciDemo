@@ -12,7 +12,14 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class Main {
 	
 	public static void setup() throws IOException{
-		URI baseUri = UriBuilder.fromUri("http://0.0.0.0/").port(1234).build();
+		String port = System.getProperty("server.port");
+		int serverPort;
+		if(port != null){
+			serverPort = Integer.parseInt(port);
+		}else{
+			serverPort = 1234;
+		}
+		URI baseUri = UriBuilder.fromUri("http://0.0.0.0/").port(serverPort).build();
 	    ResourceConfig config = new ResourceConfig(HelloWorld.class);
 	    HttpServer server = GrizzlyHttpServerFactory.createHttpServer(baseUri, config);
 	    server.start();
