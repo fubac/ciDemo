@@ -33,10 +33,23 @@ dependencies {
     testCompile 'org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-inmemory:2.22.2'
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 jar {
   manifest {
     attributes(
-      'Main-Class': 'com.ibm.hdm.server.Main'
+      'Main-Class': 'com.ibm.hdm.server.Main',
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' ')
     )
   }
 }
@@ -50,7 +63,7 @@ task stage(dependsOn: ['build', 'clean', 'copyToLib'])
 build.mustRunAfter clean
 
 task copyToLib(type: Copy) {
-    into "${buildDir}/lib"
+    into "${buildDir}/libs"
     from(configurations.compile)
 }
 
