@@ -6,5 +6,6 @@ node {
 
   stage('Test'){
     sh './gradlew check --info'
+    junit '**/test-results/**/*.xml'
   }
 }
