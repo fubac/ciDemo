@@ -8,4 +8,8 @@ node {
     sh './gradlew check --info'
     junit '**/test-results/**/*.xml'
   }
+
+  stage('Docerimage'){
+    def newApp = docker.build "cidemo:${env.BUILD_TAG}"
+  }
 }
