@@ -3,4 +3,8 @@ node {
     checkout scm
     sh './gradlew stage --info'
   }
+
+  stage('Test'){
+    sh './gradlew check --info'
+  }
 }

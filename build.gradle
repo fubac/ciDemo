@@ -59,8 +59,8 @@ mainClassName = "com.ibm.hdm.server.Main"
 
 
 
-task stage(dependsOn: ['build', 'clean', 'copyToLib'])
-build.mustRunAfter clean
+task stage(dependsOn: ['assemble', 'clean', 'copyToLib'])
+assemble.mustRunAfter clean
 
 task copyToLib(type: Copy) {
     into "${buildDir}/libs"
